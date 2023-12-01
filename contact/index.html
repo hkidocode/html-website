@@ -2031,20 +2031,10 @@
             // Convert the data object to a JSON string
             var jsonData = JSON.stringify(formData, null, 2);
 
-            // Create a Blob (binary large object) with the JSON data
-            var blob = new Blob([jsonData], { type: 'application/json' });
+            var arr = [];
+            arr.push(jsonData)
+            console.log(jsonData)
 
-            // Create a download link for the Blob
-            var downloadLink = document.createElement('a');
-            downloadLink.href = window.URL.createObjectURL(blob);
-            downloadLink.download = 'form_data.json';
-
-            // Append the link to the document and simulate a click to trigger the download
-            document.body.appendChild(downloadLink);
-            downloadLink.click();
-
-            // Remove the link from the document
-            document.body.removeChild(downloadLink);
         });
 
     </script>
