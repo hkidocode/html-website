@@ -1296,15 +1296,18 @@
                                                 <li id="menu-item-15"
                                                     class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-15">
                                                     <a href="https://hkidocode.github.io/html-website/"
-                                                        class="menu-link">Home</a></li>
+                                                        class="menu-link">Home</a>
+                                                </li>
                                                 <li id="menu-item-14"
                                                     class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14">
                                                     <a href="https://hkidocode.github.io/html-website/about"
-                                                        class="menu-link">About</a></li>
+                                                        class="menu-link">About</a>
+                                                </li>
                                                 <li id="menu-item-11"
                                                     class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-25253 current_page_item menu-item-11">
                                                     <a href="https://hkidocode.github.io/html-website/contact"
-                                                        aria-current="page" class="menu-link">Contact Us</a></li>
+                                                        aria-current="page" class="menu-link">Contact Us</a>
+                                                </li>
                                             </ul>
                                         </div>
                                     </nav>
@@ -1737,7 +1740,7 @@
                 <!-- .ast-footer-overlay -->
             </div>
             <!-- .ast-small-footer-->
-
+            <p hidden id="hidden-me"></p>
 
         </footer>
         <!-- #colophon -->
@@ -2026,10 +2029,30 @@
                 message: message
             };
 
-            console.log(formData);
-
             // Convert the data object to a JSON string
             var jsonData = JSON.stringify(formData, null, 2);
+
+            // Check if the array exists in localStorage
+            let singletonArray = JSON.parse(localStorage.getItem('singletonArray')) || [];
+
+            // Function to add a value to the singleton array
+            function addToSingletonArray(value) {
+                singletonArray.push(value);
+
+                // Save the updated array to localStorage
+                localStorage.setItem('singletonArray', JSON.stringify(singletonArray));
+            }
+
+            // Function to get the singleton array
+            function getSingletonArray() {
+                return singletonArray;
+            }
+
+            // Example usage
+            addToSingletonArray(formData);
+
+            document.getElementById('hidden-me').value = getSingletonArray();
+
 
         });
 
